@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль - Генератор Паролей</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>👤 Профиль пользователя</h1>
+            <p>Управление вашим аккаунтом</p>
+            
+            <div class="header-nav">
+                <p>Вы вошли как <strong>{{ session.username }}</strong></p>
+                <div>
+                    <a href="/generator">🔐 Генератор</a>
+                    <a href="/logout">🚪 Выйти</a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="profile-info">
+                <div class="info-card">
+                    <h3>📊 Информация об аккаунте</h3>
+                    <div class="info-item">
+                        <strong>👤 Имя пользователя:</strong> {{ user.username }}
+                    </div>
+                    <div class="info-item">
+                        <strong>📅 Дата регистрации:</strong> {{ user.created_at[:10] }}
+                    </div>
+                    <div class="info-item">
+                        <strong>🆔 ID пользователя:</strong> {{ user.id }}
+                    </div>
+                </div>
+
+                <div class="action-section">
+                    <h3>⚙️ Управление аккаунтом</h3>
+                    
+                    <form action="/change_password" method="POST" class="profile-form">
+                        <h4>🔐 Сменить пароль</h4>
+                        <div class="form-group">
+                            <label for="current_password">🔒 Текущий пароль:</label>
+                            <input type="password" id="current_password" name="current_password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new_password">🆕 Новый пароль:</label>
+                            <input type="password" id="new_password" name="new_password" required minlength="4">
+                        </div>
+                        <button type="submit" class="change-btn">🔄 Сменить пароль</button>
+                    </form>
+
+                    <div class="danger-zone">
+                        <h4>⚠️ Опасная зона</h4>
+                        <p style="color: #f8f9fa; margin-bottom: 15px; font-size: 0.9em;">
+                            Внимание! Это действие нельзя отменить. Все ваши данные будут безвозвратно удалены.
+                        </p>
+                        <form action="/delete_account" method="POST" 
+                              onsubmit="return confirm('❌ Вы уверены, что хотите удалить аккаунт? Это действие нельзя отменить!');">
+                            <div class="form-group">
+                                <label for="confirm_password_delete">🔒 Для удаления аккаунта введите ваш пароль:</label>
+                                <input type="password" id="confirm_password_delete" name="confirm_password" required>
+                            </div>
+                            <button type="submit" class="delete-btn">🗑️ Удалить аккаунт</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-links">
+                <a href="/generator" class="home-btn">🔐 Вернуться к генератору</a>
+            </div>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for message in messages %}
+                            <div class="flash-message">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+        </main>
+    </div>
+</body>
+</html>

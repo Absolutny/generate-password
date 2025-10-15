@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация - Генератор Паролей</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔑 Авторизация</h1>
+            <p>Войдите в систему для доступа к генератору паролей</p>
+        </header>
+
+        <main>
+            <form action="/login" method="POST" class="auth-form">
+                <div class="form-group">
+                    <label for="username">👤 Имя пользователя:</label>
+                    <input type="text" id="username" name="username" required 
+                           placeholder="Введите имя пользователя">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">🔒 Пароль:</label>
+                    <input type="password" id="password" name="password" required 
+                           placeholder="Введите пароль">
+                </div>
+
+                <button type="submit" class="auth-btn">🔑 Войти</button>
+            </form>
+
+            <div class="demo-account">
+                <h4>👨‍💻 Тестовый аккаунт:</h4>
+                <p><strong>Логин:</strong> user | <strong>Пароль:</strong> user</p>
+            </div>
+
+            <div class="auth-links">
+                <p>Нет аккаунта? <a href="/register">📝 Зарегистрируйтесь здесь</a></p>
+            </div>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for message in messages %}
+                            <div class="flash-message">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+        </main>
+    </div>
+</body>
+</html>
