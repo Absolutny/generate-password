@@ -1,13 +1,5 @@
 # 🔐 SecurePass Generator
 
-<div align="center">
-
-![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![Flask](https://img.shields.io/badge/Flask-2.3.3-green.svg)
-![SQLite](https://img.shields.io/badge/Database-SQLite3-lightgrey.svg)
-![Security](https://img.shields.io/badge/Security-SHA256--Hashing-orange.svg)
-![Theme](https://img.shields.io/badge/Theme-Dark--Mode-black.svg)
-
 **Современный генератор паролей с системой аутентификации и темным интерфейсом**
 
 [Особенности](#-особенности) • [Быстрый старт](#-быстрый-старт) • [Демо](#-демо) • [Документация](#-документация)
